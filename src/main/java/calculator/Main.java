@@ -10,5 +10,6 @@ public class Main {
 
         System.out.println("Enter equation:");
         String userInput = input.getInput();
+        System.out.println(calculator.Evaluate(userInput));
     }
 }
