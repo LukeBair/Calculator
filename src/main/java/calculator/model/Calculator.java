@@ -5,6 +5,8 @@ This class will not handle the splicing of the input string, or the equation tre
 
 package calculator.model;
 
+import tree.Node;
+
 /*
  Final here just means that there should not be any
  child classes of Calculator though this could change at some point.
@@ -15,37 +17,66 @@ public final class Calculator implements CalculatorInterface {
 
     public double Evaluate(String input) {
         try {
-            input = SolveParentheses(input);
+            double result = 0;
+            Node<String> tree = new Node<>(input);
+            tree = SolveForTree(tree, 0);
+            return result;
         } catch (Exception e ) {
             e.printStackTrace();
         }
-        return 0;
+        return -12541.3947687;
     }
 
-    private String SolveParentheses(String input) throws Exception {
-        String output = input;
-        int openParenthesesIndex = 0;
+    private Node<String> SolveForTree(Node<String> parent, int depth) throws Exception {
+       Node<String> root = parent;
+
+       //Split parentheses appart first
+       root = ParseForParentheses(root);
+
+       return root;
+    }
+
+    private Node<String> ParseForParentheses(Node<String> parent) throws IndexOutOfBoundsException {
+        Node<String> root = parent;
+        String parentValue = parent.value();
         String subString = "";
+        int openParenthesesIndex = 0;
 
-        for (int i = 0; i < input.length(); i++) {
-            char currentCharacter = input.charAt(i);
-            if(currentCharacter == '(') {
+        for (int i = 0; i < parentValue.length(); i++) {
+            char currentChar = parentValue.charAt(i);
+            if(currentChar == '(') {
                 openParenthesesIndex++;
-            }
-            else if(currentCharacter== ')') {
-                openParenthesesIndex--;
-                if(openParenthesesIndex == -1) {
-                    throw new IndexOutOfBoundsException();
-                }
-                else if(openParenthesesIndex == 0) {
+                if(openParenthesesIndex == 1) {
+                    if(subString == "") continue;
 
+                    System.out.println(subString + ", OUT P");
+                    subString = "";
+                }
+                else {
+                    subString += currentChar;
+                }
+            }
+            else if(currentChar == ')') {
+                openParenthesesIndex --;
+
+                if(i + 2 <= parentValue.length()) {
+                    subString += parentValue.charAt(i + 1);
+                }
+
+                if(openParenthesesIndex == 0) {
+                    System.out.println(subString + ", IN P");
+                    subString = "";
+                }
+                else if(openParenthesesIndex < 0) {
+                    System.out.println("OH NO");
+                    throw new IndexOutOfBoundsException();
                 }
             }
             else {
-                subString += currentCharacter;
+                subString += currentChar;
             }
         }
-        return output;
+        return root;
     }
 
 
