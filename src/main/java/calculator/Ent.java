@@ -4,8 +4,8 @@ package com.company;
 sorry for the lack of comments. I've been trying ideas for like 6 hours, so I'm kind of tired.
 This is just kind of an idea with some sample code. I also can't do interface, I just use the console.
 There is a sample function down below to show how this type of data structure would be beneficial.
-
 */
+
 public class Ent {
     String data = "";
     Ent child; //the child's index is distinct from its parent's
@@ -15,7 +15,16 @@ public class Ent {
     int index = 0;
     int depth = 0;
 
+    /*
+     This is an interesting data structure for sure
+     one thing that I noticed about it is that you could try to create a child or neighbor
+     when one already exists at the specified index and depth.
+     For example if the root Ent is at (Index: 0, Depth: 0), has a child/father (idk) at (0, 1),
+     and a neighbor at (1, 0) then if you try to create a neighbor for the child, or a child for the neighbor,
+     then you will have an overlap when you look at (Index: 1, Depth: 1)
+     */
 
+    // Rename to setNeighbor? idk makes sense to me, but maybe its best to keep it as setNext
     public void setNext() {
         next = new Ent();
         next.data = "";
