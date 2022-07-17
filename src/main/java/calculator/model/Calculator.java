@@ -15,39 +15,12 @@ public final class Calculator implements CalculatorInterface {
 
     public double Evaluate(String input) {
         try {
-            input = SolveParentheses(input);
-        } catch (Exception e ) {
+//            input = SolveParentheses(input);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
     }
-
-    private String SolveParentheses(String input) throws Exception {
-        String output = input;
-        int openParenthesesIndex = 0;
-        String subString = "";
-
-        for (int i = 0; i < input.length(); i++) {
-            char currentCharacter = input.charAt(i);
-            if(currentCharacter == '(') {
-                openParenthesesIndex++;
-            }
-            else if(currentCharacter== ')') {
-                openParenthesesIndex--;
-                if(openParenthesesIndex == -1) {
-                    throw new IndexOutOfBoundsException();
-                }
-                else if(openParenthesesIndex == 0) {
-
-                }
-            }
-            else {
-                subString += currentCharacter;
-            }
-        }
-        return output;
-    }
-
 
     // The implementation of the method "Add" found in the CalculatorInterface
     public double Add(double a, double b) {
