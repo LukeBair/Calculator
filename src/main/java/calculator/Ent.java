@@ -30,7 +30,7 @@ public class Ent {
         next.data = "";
         next.previous = this;
         next.index = this.index+1;
-        next.parent = this;
+        next.parent = this.parent; // I made a mistake on this line. Fortunately, it didn't affect the program. Change: this --> this.parent
         next.depth = this.depth;
     }
 
