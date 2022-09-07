@@ -1,0 +1,9 @@
+
+.DS_Store
+.gradle/7.1/dependencies-accessors/dependencies-accessors.lock
+.gradle/7.1/executionHistory/executionHistory.lock
+.gradle/7.1/dependencies-accessors/gc.properties
+.gradle/7.1/fileChanges/last-build.bin
+*.lock
+*.properties
+*.xml

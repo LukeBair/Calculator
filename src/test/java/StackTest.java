@@ -78,7 +78,7 @@ public class StackTest {
 
         double e = cal.evaluate(test5);
         if(e != -120) return false;
-        x
+        
         return true;
     }
 }
